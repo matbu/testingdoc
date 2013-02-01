@@ -1,10 +1,10 @@
 SHELL := /bin/bash
 #
-# Copyright (c) matbu
+# Copyright (c) matbu & madau
 # Licensed computer software. Property of MBU.
 # Project Name : docauto
 # Author(s) : Mathieu Butel <mat.bultel@gmail.com>
-#
+# Maxime Adau <maxadau@gmail.com>
 
 # @todo
 #CSS=../tests.css
