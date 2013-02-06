@@ -12,11 +12,12 @@ SHELL := /bin/bash
 TESTCASE_PATH=		testcase/
 SCENARII_PATH=		scenarii/
 
-SCENARII= $(SCENARII_PATH)/demo.rst
+SCENARII=		$(SCENARII_PATH)/demo.rst
 
-PDF=		$(SCENARII:.rst=.pdf)
+PDF=			$(SCENARII:.rst=.pdf)
 
-PDF_PATH=	pdf/
+PDF_PATH=		pdf/
+
 
 .SUFFIXES: .rst .pdf .html
 
