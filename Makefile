@@ -1,37 +1,35 @@
 SHELL := /bin/bash
 #
-# Copyright (c) matbu & madau
-# Licensed computer software. Property of MBU.
-# Project Name : docauto
+# Project Name : testdoc
 # Author(s) : Mathieu Butel <mat.bultel@gmail.com>
 # Maxime Adau <maxadau@gmail.com>
+
 
 # @todo
 #CSS=../tests.css
 
 TESTCASE_PATH=		testcase/
 SCENARII_PATH=		scenarii/
-
-SCENARII=		$(SCENARII_PATH)/demo.rst
-
-PDF=			$(SCENARII:.rst=.pdf)
-
 PDF_PATH=		pdf/
 
 
 .SUFFIXES: .rst .pdf .html
 
-all: scenarii
+all: prepare scenarii end
 
-scenarii: $(PDF)
-	mv $(SCENARII_PATH)*.pdf pdf/
+scenarii: $(foreach test,$(shell ls $(SCENARII_PATH)),$(SCENARII_PATH)$(test:.rst=.pdf));
+
+prepare:
+	rm -f $(SCENARII_PATH)*.pdf
+	rm -f $(SCENARII_PATH)*~
 
 .rst.pdf:
 	rst2pdf $? > $@
 
+end:
+	mv $(SCENARII_PATH)*.pdf pdf/
+
 clean:
-	rm -f pdf/*.pdf
+	rm -f $(PDF_PATH)/*
 
-re: clean all
-
-.PHONY: all user admin clean
+.PHONY: all clean
