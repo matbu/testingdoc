@@ -23,9 +23,6 @@ prepare:
 	rm -f $(SCENARII_PATH)*.pdf
 	rm -f $(SCENARII_PATH)*~
 
-.rst.pdf:
-	rst2pdf $? > $@
-
 end:
 	mv $(SCENARII_PATH)*.pdf pdf/
 
