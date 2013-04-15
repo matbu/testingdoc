@@ -11,7 +11,7 @@ SHELL := /bin/bash
 TESTCASE_PATH=		testcase/
 SCENARII_PATH=		scenarii/
 PDF_PATH=		pdf/
-
+TESTS=			$(shell ls $(SCENARII_PATH))
 
 .SUFFIXES: .rst .pdf .html
 
@@ -26,8 +26,11 @@ prepare:
 .rst.pdf:
 	rst2pdf $? > $@
 
+scenarii: $(foreach test, $(TESTS),$(SCENARII_PATH)$(test:.rst=.pdf));
+
 end:
 	mv $(SCENARII_PATH)*.pdf pdf/
+
 
 clean:
 	rm -f $(PDF_PATH)/*
