@@ -17,11 +17,14 @@ PDF_PATH=		pdf/
 
 all: prepare scenarii end
 
-scenarii: $(foreach test,$(shell ls $(SCENARII_PATH)),$(SCENARII_PATH)$(test:.rst=.pdf));
+scenarii: $(foreach test,$(shell ls $(SCENARII_PATH) | grep -v '~'),$(SCENARII_PATH)$(test:.rst=.pdf));
 
 prepare:
-	rm -f $(SCENARII_PATH)*.pdf
 	rm -f $(SCENARII_PATH)*~
+	rm -f $(SCENARII_PATH)*.pdf
+
+.rst.pdf:
+	rst2pdf $? > $@
 
 end:
 	mv $(SCENARII_PATH)*.pdf pdf/
